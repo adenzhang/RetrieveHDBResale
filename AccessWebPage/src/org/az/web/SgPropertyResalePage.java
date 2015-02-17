@@ -529,11 +529,12 @@ public class SgPropertyResalePage {
 					entryFlat.getValue().setSelected(false);
 					continue;
 				}
+				if(!entryFlat.getValue().isSelected()) continue;
+				if(!entryTown.getValue().isSelected()) break;
+				
 				prt("(%s, %s): start retrieve...", sFlat,  sTown);
 				HtmlPage page = query(entryFlat.getKey(), entryTown.getKey());
 				if( page == null) break;
-				if(!entryFlat.getValue().isSelected()) continue;
-				if(!entryTown.getValue().isSelected()) break;
 				ArrayList<ArrayList<String>> records = retrieveRecords(page, sFlat, sTown);
 				if( records.size() == 0 ){
 					prt("(%s, %s): records not found", sFlat, sTown);
